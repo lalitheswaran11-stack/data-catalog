@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Catalog databases and generated demo data
+*.db
+examples/sample_data/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

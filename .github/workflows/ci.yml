@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --dev
+
+      - name: Run tests
+        run: uv run pytest
+
+      - name: Smoke-test the CLI on generated sample data
+        run: |
+          uv run python examples/make_sample_data.py /tmp/sample_data
+          uv run datacat --db /tmp/demo.db scan /tmp/sample_data
+          uv run datacat --db /tmp/demo.db list
+          uv run datacat --db /tmp/demo.db search order_id
+          uv run datacat --db /tmp/demo.db dupes
