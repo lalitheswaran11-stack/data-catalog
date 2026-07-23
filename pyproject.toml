@@ -5,7 +5,7 @@ description = "Dataset discovery and cataloging CLI: profile a directory of mixe
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Lalithesh Narayanan" }]
+authors = [{ name = "Lalitheswaran Viswanathan" }]
 dependencies = [
     "pandas>=3.0.3",
     "pyarrow>=25.0.0",
